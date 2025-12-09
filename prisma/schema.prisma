@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/prisma/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// template model
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  username String @unique
+  password String
+
+  @@map("users")
+}
+
+model Chat {
+  id      Int    @id @default(autoincrement())
+  message String
+  roomId  String @map("room_id")
+  userId  Int    @map("user_id")
+
+  @@map("chats")
+}
