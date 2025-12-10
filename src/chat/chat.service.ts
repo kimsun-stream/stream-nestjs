@@ -29,4 +29,8 @@ export class ChatService {
       },
     });
   }
+
+  async getMessages(roomId: string) {
+    return await this.prisma.chat.findMany({ where: { roomId }, distinct: ['createdAt'] });
+  }
 }

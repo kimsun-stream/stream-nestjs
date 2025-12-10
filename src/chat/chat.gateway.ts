@@ -36,6 +36,8 @@ export class ChatGateway {
   ) {
     client.join(data.roomId);
     client.emit('joined', { roomId: data.roomId });
+    const result = await this.chatService.getMessages(data.roomId);
+    client.emit('messages', result);
   }
 
   @SubscribeMessage('sendMessage')
