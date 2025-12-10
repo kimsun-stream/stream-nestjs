@@ -41,7 +41,7 @@ export class ChatGateway {
   @SubscribeMessage('sendMessage')
   async handleMessage(@MessageBody() data: MessageDto, @ConnectedSocket() client: Socket) {
     console.log(data);
-    const result = await this.chatService.sendMessage(data);
+    const result = await this.chatService.sendMessage(data, client);
     this.server.to(data.roomId).emit('newMessage', result);
   }
 }

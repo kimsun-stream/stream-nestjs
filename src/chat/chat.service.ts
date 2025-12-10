@@ -3,6 +3,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { MessageDto } from './dto/message.dto';
 import { AuthService } from 'src/auth/auth.service';
 import z from 'zod';
+import { Socket } from 'socket.io';
 
 @Injectable()
 export class ChatService {
@@ -11,15 +12,21 @@ export class ChatService {
     private readonly authService: AuthService,
   ) {}
 
-  async sendMessage(dto: MessageDto) {
+  async sendMessage(dto: MessageDto, client: Socket) {
     const { token, roomId, message } = dto;
-    if (!token) throw new UnauthorizedException('No token');
+    if (!token) return client.emit('No token');
 
     const result = await this.authService.isValidToken(token);
-    if (!result) throw new UnauthorizedException('Invalid token');
+    if (!result) return client.emit('Invalid token');
 
     return this.prisma.chat.create({
-      data: { userId: result.userId, roomId, message },
+      data: {
+        userId: result.userId,
+        roomId,
+        message,
+        username: result.username,
+        createdAt: new Date(),
+      },
     });
   }
 }

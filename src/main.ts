@@ -13,7 +13,7 @@ async function bootstrap() {
   app.useGlobalFilters(new CustomExceptionFilter());
   app.useGlobalPipes(new ZodValidationPipe());
   app.useGlobalInterceptors(new TransformInterceptor());
-
+  
   app.enableCors({
     origin: `${process.env.FRONT_URL}`,
     Credential: true,
