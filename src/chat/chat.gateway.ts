@@ -36,7 +36,7 @@ export class ChatGateway {
   ) {
     client.join(data.roomId);
     client.emit('joined', { roomId: data.roomId });
-    const result = await this.chatService.getMessages(data.roomId);
+    const result = await this.chatService.getMessages(data.roomId, 1, 50);
     client.emit('messages', result);
   }
 
@@ -45,5 +45,13 @@ export class ChatGateway {
     console.log(data);
     const result = await this.chatService.sendMessage(data, client);
     this.server.to(data.roomId).emit('newMessage', result);
+  }
+
+  @SubscribeMessage('getMessages')
+  async getMessages(
+    @MessageBody() data: { roomId: string; page: number; limit: number },
+    @ConnectedSocket() client: Socket,
+  ) {
+    await this.chatService.getMessages(data.roomId, data.page, data.limit);
   }
 }
