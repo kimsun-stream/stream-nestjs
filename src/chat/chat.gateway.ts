@@ -9,8 +9,8 @@ import { Server, Socket } from 'socket.io';
 import { ChatService } from './chat.service';
 import { AuthService } from 'src/auth/auth.service';
 import { UseFilters } from '@nestjs/common';
-import { MessageDto } from './dto/message.dto';
 import { CustomWsExceptionFilter } from 'src/common/filters/ws-exception.filter';
+import { GetMessagesDto, SendMessageDto } from './dto/message.dto';
 
 @WebSocketGateway({ cors: { origin: '*' }, namespace: 'chat' })
 @UseFilters(new CustomWsExceptionFilter())
@@ -36,22 +36,18 @@ export class ChatGateway {
   ) {
     client.join(data.roomId);
     client.emit('joined', { roomId: data.roomId });
-    const result = await this.chatService.getMessages(data.roomId, 1, 50);
-    client.emit('messages', result);
   }
 
   @SubscribeMessage('sendMessage')
-  async handleMessage(@MessageBody() data: MessageDto, @ConnectedSocket() client: Socket) {
+  async handleMessage(@MessageBody() data: SendMessageDto, @ConnectedSocket() client: Socket) {
     console.log(data);
     const result = await this.chatService.sendMessage(data, client);
     this.server.to(data.roomId).emit('newMessage', result);
   }
 
   @SubscribeMessage('getMessages')
-  async getMessages(
-    @MessageBody() data: { roomId: string; page: number; limit: number },
-    @ConnectedSocket() client: Socket,
-  ) {
-    await this.chatService.getMessages(data.roomId, data.page, data.limit);
+  async getMessages(@MessageBody() dto: GetMessagesDto, @ConnectedSocket() client: Socket) {
+    const messages = await this.chatService.getMessages(dto);
+    client.emit('messages', messages);
   }
 }

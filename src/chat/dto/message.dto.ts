@@ -1,10 +1,17 @@
 import { createZodDto } from 'nestjs-zod';
 import z from 'zod';
 
-export const MessageSchema = z.object({
+const SendMessageSchema = z.object({
   roomId: z.string(),
   message: z.string(),
   token: z.string().optional(),
 });
 
-export class MessageDto extends createZodDto(MessageSchema) {}
+const GetMessagesSchema = z.object({
+  roomId: z.string(),
+  limit: z.number(),
+  cursor: z.date().optional(),
+});
+
+export class SendMessageDto extends createZodDto(SendMessageSchema) {}
+export class GetMessagesDto extends createZodDto(GetMessagesSchema) {}

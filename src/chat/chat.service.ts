@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { MessageDto } from './dto/message.dto';
+import { GetMessagesDto, SendMessageDto } from './dto/message.dto';
 import { AuthService } from 'src/auth/auth.service';
 import z from 'zod';
 import { Socket } from 'socket.io';
@@ -16,7 +16,7 @@ export class ChatService {
     private readonly authService: AuthService,
   ) {}
 
-  async sendMessage(dto: MessageDto, client: Socket) {
+  async sendMessage(dto: SendMessageDto, client: Socket) {
     const { token, roomId, message } = dto;
     if (!token) return client.emit('No token');
 
@@ -49,34 +49,43 @@ export class ChatService {
     return msg;
   }
 
-  async getMessages(roomId: string, page: number, limit: number) {
-    const len = await this.redis.llen(`chat:history:${roomId}`);
-    if (!len) {
-      return await this.prisma.chat.findMany({
+  async getMessages(dto: GetMessagesDto) {
+    const { roomId, limit, cursor } = dto;
+
+    const redisString = await this.redis.lrange(`chat:history:${roomId}`, 0, -1);
+
+    if (!cursor) {
+      const dto = GetMessagesDto.create({ roomId, limit, cursor: new Date() });
+      return await this.getMessages(dto);
+    }
+
+    // const redisMessages = redisString
+    //   .map((msg) => {
+    //     const parsedMsg: Chat = JSON.parse(msg);
+    //     parsedMsg.createdAt < cursor ? parsedMsg : ;
+    //   })
+    //   .reverse();
+
+    const redisMessages = redisString
+      .map((msg) => JSON.parse(msg) as Chat)
+      .filter((msg) => msg.createdAt < cursor)
+      .reverse();
+
+    let dbMessages: Chat[] = [];
+    const need = limit - redisMessages.length;
+
+    console.log(need);
+
+    if (need > 0) {
+      dbMessages = await this.prisma.chat.findMany({
         where: { roomId },
-        orderBy: { createdAt: 'desc' },
-        take: limit,
-        skip: (page - 1) * limit,
+        orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
+        take: need,
       });
     }
 
-    const jsonStringMessages = await this.redis.lrange(
-      `chat:history:${roomId}`,
-      page * limit - limit,
-      page * limit,
-    );
+    const messages = [...dbMessages, ...redisMessages];
 
-    const take = page * limit - 100 > 0 ? page * limit - 100 : 0;
-
-    const messages1 = jsonStringMessages.map((msg) => JSON.parse(msg));
-    const messages2 = await this.prisma.chat.findMany({
-      where: { roomId },
-      orderBy: { createdAt: 'desc' },
-      take,
-    });
-
-    const messages = messages1.reverse().concat(messages2);
-
-    return messages;
+    return { messages, cursor: messages[messages.length - 1].createdAt };
   }
 }
