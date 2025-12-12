@@ -10,7 +10,7 @@ const SendMessageSchema = z.object({
 const GetMessagesSchema = z.object({
   roomId: z.string(),
   limit: z.number(),
-  cursor: z.date().optional(),
+  nextCursor: z.date().optional(),
 });
 
 export class SendMessageDto extends createZodDto(SendMessageSchema) {}

@@ -45,47 +45,42 @@ export class ChatService {
     } else {
       await this.redis.lpush(`chat:history:${roomId}`, JSON.stringify(msg));
     }
-
     return msg;
   }
 
-  async getMessages(dto: GetMessagesDto) {
-    const { roomId, limit, cursor } = dto;
+  async getMessages(dto: GetMessagesDto): Promise<{ messages: Chat[]; nextCursor: Date | null }> {
+    const { roomId, limit, nextCursor } = dto;
 
     const redisString = await this.redis.lrange(`chat:history:${roomId}`, 0, -1);
 
-    if (!cursor) {
-      const dto = GetMessagesDto.create({ roomId, limit, cursor: new Date() });
+    if (!nextCursor) {
+      const dto = GetMessagesDto.create({ roomId, limit, nextCursor: new Date() });
       return await this.getMessages(dto);
     }
 
-    // const redisMessages = redisString
-    //   .map((msg) => {
-    //     const parsedMsg: Chat = JSON.parse(msg);
-    //     parsedMsg.createdAt < cursor ? parsedMsg : ;
-    //   })
-    //   .reverse();
-
-    const redisMessages = redisString
+    let redisMessages = redisString
       .map((msg) => JSON.parse(msg) as Chat)
-      .filter((msg) => msg.createdAt < cursor)
-      .reverse();
-
+      .filter((msg) => new Date(msg.createdAt) < new Date(nextCursor));
     let dbMessages: Chat[] = [];
     const need = limit - redisMessages.length;
 
-    console.log(need);
-
     if (need > 0) {
       dbMessages = await this.prisma.chat.findMany({
-        where: { roomId },
-        orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
-        take: need,
+        where: { roomId, createdAt: { lte: nextCursor } },
+        orderBy: [{ createdAt: 'asc' }, { id: 'asc' }],
+        take: need + 1,
       });
+    } else if (need < 0) {
+      redisMessages = redisMessages.slice(0, limit - 1);
     }
 
-    const messages = [...dbMessages, ...redisMessages];
+    const messages = [...redisMessages, ...dbMessages];
 
-    return { messages, cursor: messages[messages.length - 1].createdAt };
+    const resNextCursor = messages[messages.length - 1].createdAt
+      ? messages[messages.length - 1].createdAt
+      : null;
+    console.log(messages);
+
+    return { messages, nextCursor: resNextCursor };
   }
 }
