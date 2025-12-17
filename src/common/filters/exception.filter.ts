@@ -3,6 +3,7 @@ import { ZodSerializationException, ZodValidationException } from 'nestjs-zod';
 import { Prisma } from 'src/prisma/generated/prisma/client';
 import z, { prettifyError, ZodError } from 'zod';
 import { BaseResponseSchema, ErrorResponseSchema } from '../dto/base-response';
+import { WsException } from '@nestjs/websockets';
 
 @Catch()
 export class CustomExceptionFilter implements ExceptionFilter {
@@ -49,7 +50,6 @@ export class CustomExceptionFilter implements ExceptionFilter {
           break;
         case 'P2025': // record not found
           const record = exception.meta?.modelName ?? 'Record';
-
           status = HttpStatus.NOT_FOUND;
           message = `${record} not found`;
           error = 'RecordNotFound';
@@ -58,7 +58,6 @@ export class CustomExceptionFilter implements ExceptionFilter {
           status = HttpStatus.INTERNAL_SERVER_ERROR;
           message = `${exception.message}`;
           error = `${exception.name}`;
-          console.log(exception.meta);
           break;
       }
     }
@@ -68,6 +67,8 @@ export class CustomExceptionFilter implements ExceptionFilter {
       res = exception.getResponse();
       message = res.message;
       error = res.error;
+    } else if (exception instanceof WsException) {
+      console.log(exception.message);
     }
 
     response.status(status).json(

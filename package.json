@@ -26,16 +26,31 @@
     "@nestjs/jwt": "^11.0.1",
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
+<<<<<<< HEAD
     "@nestjs/swagger": "^11.2.3",
     "@prisma/adapter-pg": "^7.1.0",
     "@prisma/client": "^7.1.0",
     "dotenv": "^17.2.3",
+=======
+    "@nestjs/platform-socket.io": "^11.1.9",
+    "@nestjs/swagger": "^11.2.3",
+    "@nestjs/websockets": "^11.1.9",
+    "@prisma/adapter-pg": "^7.1.0",
+    "@prisma/client": "^7.1.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.3",
+    "ioredis": "^5.8.2",
+>>>>>>> feature/chat
     "nestjs-zod": "^5.0.1",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "pg": "^8.16.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
+<<<<<<< HEAD
+=======
+    "socket.io": "^4.8.1",
+>>>>>>> feature/chat
     "zod": "^4.1.13"
   },
   "devDependencies": {
@@ -44,7 +59,13 @@
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
+<<<<<<< HEAD
     "@types/express": "^5.0.0",
+=======
+    "@types/bcrypt": "^6.0.0",
+    "@types/express": "^5.0.0",
+    "@types/ioredis": "^4.28.10",
+>>>>>>> feature/chat
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.7",
     "@types/supertest": "^6.0.2",
