@@ -47,3 +47,28 @@ export type User = Prisma.UserModel
  * 
  */
 export type Chat = Prisma.ChatModel
+/**
+ * Model contributions
+ * 
+ */
+export type contributions = Prisma.contributionsModel
+/**
+ * Model donations
+ * 
+ */
+export type donations = Prisma.donationsModel
+/**
+ * Model follows
+ * 
+ */
+export type follows = Prisma.followsModel
+/**
+ * Model stream_sessions
+ * 
+ */
+export type stream_sessions = Prisma.stream_sessionsModel
+/**
+ * Model streams
+ * 
+ */
+export type streams = Prisma.streamsModel

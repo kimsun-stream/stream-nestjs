@@ -10,4 +10,9 @@
  */
 export type * from './models/User'
 export type * from './models/Chat'
+export type * from './models/contributions'
+export type * from './models/donations'
+export type * from './models/follows'
+export type * from './models/stream_sessions'
+export type * from './models/streams'
 export type * from './commonInputTypes'

@@ -28,10 +28,12 @@ export type AggregateUser = {
 
 export type UserAvgAggregateOutputType = {
   id: number | null
+  points: number | null
 }
 
 export type UserSumAggregateOutputType = {
   id: number | null
+  points: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -39,6 +41,12 @@ export type UserMinAggregateOutputType = {
   email: string | null
   username: string | null
   password: string | null
+  profile_image_url: string | null
+  bio: string | null
+  points: number | null
+  is_email_verified: boolean | null
+  email_verify_token: string | null
+  created_at: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -46,6 +54,12 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   username: string | null
   password: string | null
+  profile_image_url: string | null
+  bio: string | null
+  points: number | null
+  is_email_verified: boolean | null
+  email_verify_token: string | null
+  created_at: Date | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -53,16 +67,24 @@ export type UserCountAggregateOutputType = {
   email: number
   username: number
   password: number
+  profile_image_url: number
+  bio: number
+  points: number
+  is_email_verified: number
+  email_verify_token: number
+  created_at: number
   _all: number
 }
 
 
 export type UserAvgAggregateInputType = {
   id?: true
+  points?: true
 }
 
 export type UserSumAggregateInputType = {
   id?: true
+  points?: true
 }
 
 export type UserMinAggregateInputType = {
@@ -70,6 +92,12 @@ export type UserMinAggregateInputType = {
   email?: true
   username?: true
   password?: true
+  profile_image_url?: true
+  bio?: true
+  points?: true
+  is_email_verified?: true
+  email_verify_token?: true
+  created_at?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -77,6 +105,12 @@ export type UserMaxAggregateInputType = {
   email?: true
   username?: true
   password?: true
+  profile_image_url?: true
+  bio?: true
+  points?: true
+  is_email_verified?: true
+  email_verify_token?: true
+  created_at?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -84,6 +118,12 @@ export type UserCountAggregateInputType = {
   email?: true
   username?: true
   password?: true
+  profile_image_url?: true
+  bio?: true
+  points?: true
+  is_email_verified?: true
+  email_verify_token?: true
+  created_at?: true
   _all?: true
 }
 
@@ -178,6 +218,12 @@ export type UserGroupByOutputType = {
   email: string
   username: string
   password: string
+  profile_image_url: string | null
+  bio: string | null
+  points: number | null
+  is_email_verified: boolean | null
+  email_verify_token: string | null
+  created_at: Date
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -208,6 +254,19 @@ export type UserWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   username?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
+  profile_image_url?: Prisma.StringNullableFilter<"User"> | string | null
+  bio?: Prisma.StringNullableFilter<"User"> | string | null
+  points?: Prisma.IntNullableFilter<"User"> | number | null
+  is_email_verified?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  email_verify_token?: Prisma.StringNullableFilter<"User"> | string | null
+  created_at?: Prisma.DateTimeFilter<"User"> | Date | string
+  chats?: Prisma.ChatListRelationFilter
+  contributions?: Prisma.ContributionsListRelationFilter
+  donations_donations_from_user_idTousers?: Prisma.DonationsListRelationFilter
+  donations_donations_to_user_idTousers?: Prisma.DonationsListRelationFilter
+  follows_follows_follower_idTousers?: Prisma.FollowsListRelationFilter
+  follows_follows_following_idTousers?: Prisma.FollowsListRelationFilter
+  streams?: Prisma.StreamsListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -215,6 +274,19 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  profile_image_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder
+  points?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_email_verified?: Prisma.SortOrderInput | Prisma.SortOrder
+  email_verify_token?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  chats?: Prisma.ChatOrderByRelationAggregateInput
+  contributions?: Prisma.contributionsOrderByRelationAggregateInput
+  donations_donations_from_user_idTousers?: Prisma.donationsOrderByRelationAggregateInput
+  donations_donations_to_user_idTousers?: Prisma.donationsOrderByRelationAggregateInput
+  follows_follows_follower_idTousers?: Prisma.followsOrderByRelationAggregateInput
+  follows_follows_following_idTousers?: Prisma.followsOrderByRelationAggregateInput
+  streams?: Prisma.streamsOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -225,6 +297,19 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   password?: Prisma.StringFilter<"User"> | string
+  profile_image_url?: Prisma.StringNullableFilter<"User"> | string | null
+  bio?: Prisma.StringNullableFilter<"User"> | string | null
+  points?: Prisma.IntNullableFilter<"User"> | number | null
+  is_email_verified?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  email_verify_token?: Prisma.StringNullableFilter<"User"> | string | null
+  created_at?: Prisma.DateTimeFilter<"User"> | Date | string
+  chats?: Prisma.ChatListRelationFilter
+  contributions?: Prisma.ContributionsListRelationFilter
+  donations_donations_from_user_idTousers?: Prisma.DonationsListRelationFilter
+  donations_donations_to_user_idTousers?: Prisma.DonationsListRelationFilter
+  follows_follows_follower_idTousers?: Prisma.FollowsListRelationFilter
+  follows_follows_following_idTousers?: Prisma.FollowsListRelationFilter
+  streams?: Prisma.StreamsListRelationFilter
 }, "id" | "email" | "username">
 
 export type UserOrderByWithAggregationInput = {
@@ -232,6 +317,12 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  profile_image_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder
+  points?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_email_verified?: Prisma.SortOrderInput | Prisma.SortOrder
+  email_verify_token?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -247,12 +338,31 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   username?: Prisma.StringWithAggregatesFilter<"User"> | string
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
+  profile_image_url?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  bio?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  points?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  is_email_verified?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  email_verify_token?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
 
 export type UserCreateInput = {
   email: string
   username: string
   password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatCreateNestedManyWithoutUsersInput
+  contributions?: Prisma.contributionsCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_following_idTousersInput
+  streams?: Prisma.streamsCreateNestedManyWithoutUsersInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -260,12 +370,38 @@ export type UserUncheckedCreateInput = {
   email: string
   username: string
   password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatUncheckedCreateNestedManyWithoutUsersInput
+  contributions?: Prisma.contributionsUncheckedCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_following_idTousersInput
+  streams?: Prisma.streamsUncheckedCreateNestedManyWithoutUsersInput
 }
 
 export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUpdateManyWithoutUsersNestedInput
+  contributions?: Prisma.contributionsUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+  streams?: Prisma.streamsUpdateManyWithoutUsersNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -273,6 +409,19 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUncheckedUpdateManyWithoutUsersNestedInput
+  contributions?: Prisma.contributionsUncheckedUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+  streams?: Prisma.streamsUncheckedUpdateManyWithoutUsersNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -280,12 +429,24 @@ export type UserCreateManyInput = {
   email: string
   username: string
   password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
 }
 
 export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -293,6 +454,12 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -300,10 +467,17 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  profile_image_url?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
+  points?: Prisma.SortOrder
+  is_email_verified?: Prisma.SortOrder
+  email_verify_token?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  points?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -311,6 +485,12 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  profile_image_url?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
+  points?: Prisma.SortOrder
+  is_email_verified?: Prisma.SortOrder
+  email_verify_token?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -318,14 +498,46 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  profile_image_url?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
+  points?: Prisma.SortOrder
+  is_email_verified?: Prisma.SortOrder
+  email_verify_token?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  points?: Prisma.SortOrder
+}
+
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
 }
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type NullableBoolFieldUpdateOperationsInput = {
+  set?: boolean | null
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -336,6 +548,817 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type UserCreateNestedOneWithoutChatsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutChatsInput, Prisma.UserUncheckedCreateWithoutChatsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutChatsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutChatsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutChatsInput, Prisma.UserUncheckedCreateWithoutChatsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutChatsInput
+  upsert?: Prisma.UserUpsertWithoutChatsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutChatsInput, Prisma.UserUpdateWithoutChatsInput>, Prisma.UserUncheckedUpdateWithoutChatsInput>
+}
+
+export type UserCreateNestedOneWithoutContributionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutContributionsInput, Prisma.UserUncheckedCreateWithoutContributionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutContributionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutContributionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutContributionsInput, Prisma.UserUncheckedCreateWithoutContributionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutContributionsInput
+  upsert?: Prisma.UserUpsertWithoutContributionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutContributionsInput, Prisma.UserUpdateWithoutContributionsInput>, Prisma.UserUncheckedUpdateWithoutContributionsInput>
+}
+
+export type UserCreateNestedOneWithoutDonations_donations_from_user_idTousersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDonations_donations_from_user_idTousersInput, Prisma.UserUncheckedCreateWithoutDonations_donations_from_user_idTousersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDonations_donations_from_user_idTousersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutDonations_donations_to_user_idTousersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDonations_donations_to_user_idTousersInput, Prisma.UserUncheckedCreateWithoutDonations_donations_to_user_idTousersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDonations_donations_to_user_idTousersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutDonations_donations_from_user_idTousersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDonations_donations_from_user_idTousersInput, Prisma.UserUncheckedCreateWithoutDonations_donations_from_user_idTousersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDonations_donations_from_user_idTousersInput
+  upsert?: Prisma.UserUpsertWithoutDonations_donations_from_user_idTousersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDonations_donations_from_user_idTousersInput, Prisma.UserUpdateWithoutDonations_donations_from_user_idTousersInput>, Prisma.UserUncheckedUpdateWithoutDonations_donations_from_user_idTousersInput>
+}
+
+export type UserUpdateOneRequiredWithoutDonations_donations_to_user_idTousersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDonations_donations_to_user_idTousersInput, Prisma.UserUncheckedCreateWithoutDonations_donations_to_user_idTousersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDonations_donations_to_user_idTousersInput
+  upsert?: Prisma.UserUpsertWithoutDonations_donations_to_user_idTousersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDonations_donations_to_user_idTousersInput, Prisma.UserUpdateWithoutDonations_donations_to_user_idTousersInput>, Prisma.UserUncheckedUpdateWithoutDonations_donations_to_user_idTousersInput>
+}
+
+export type UserCreateNestedOneWithoutFollows_follows_follower_idTousersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFollows_follows_follower_idTousersInput, Prisma.UserUncheckedCreateWithoutFollows_follows_follower_idTousersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFollows_follows_follower_idTousersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutFollows_follows_following_idTousersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFollows_follows_following_idTousersInput, Prisma.UserUncheckedCreateWithoutFollows_follows_following_idTousersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFollows_follows_following_idTousersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutFollows_follows_follower_idTousersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFollows_follows_follower_idTousersInput, Prisma.UserUncheckedCreateWithoutFollows_follows_follower_idTousersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFollows_follows_follower_idTousersInput
+  upsert?: Prisma.UserUpsertWithoutFollows_follows_follower_idTousersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFollows_follows_follower_idTousersInput, Prisma.UserUpdateWithoutFollows_follows_follower_idTousersInput>, Prisma.UserUncheckedUpdateWithoutFollows_follows_follower_idTousersInput>
+}
+
+export type UserUpdateOneRequiredWithoutFollows_follows_following_idTousersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFollows_follows_following_idTousersInput, Prisma.UserUncheckedCreateWithoutFollows_follows_following_idTousersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFollows_follows_following_idTousersInput
+  upsert?: Prisma.UserUpsertWithoutFollows_follows_following_idTousersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFollows_follows_following_idTousersInput, Prisma.UserUpdateWithoutFollows_follows_following_idTousersInput>, Prisma.UserUncheckedUpdateWithoutFollows_follows_following_idTousersInput>
+}
+
+export type UserCreateNestedOneWithoutStreamsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStreamsInput, Prisma.UserUncheckedCreateWithoutStreamsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStreamsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutStreamsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStreamsInput, Prisma.UserUncheckedCreateWithoutStreamsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStreamsInput
+  upsert?: Prisma.UserUpsertWithoutStreamsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutStreamsInput, Prisma.UserUpdateWithoutStreamsInput>, Prisma.UserUncheckedUpdateWithoutStreamsInput>
+}
+
+export type UserCreateWithoutChatsInput = {
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  contributions?: Prisma.contributionsCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_following_idTousersInput
+  streams?: Prisma.streamsCreateNestedManyWithoutUsersInput
+}
+
+export type UserUncheckedCreateWithoutChatsInput = {
+  id?: number
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  contributions?: Prisma.contributionsUncheckedCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_following_idTousersInput
+  streams?: Prisma.streamsUncheckedCreateNestedManyWithoutUsersInput
+}
+
+export type UserCreateOrConnectWithoutChatsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutChatsInput, Prisma.UserUncheckedCreateWithoutChatsInput>
+}
+
+export type UserUpsertWithoutChatsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutChatsInput, Prisma.UserUncheckedUpdateWithoutChatsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutChatsInput, Prisma.UserUncheckedCreateWithoutChatsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutChatsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutChatsInput, Prisma.UserUncheckedUpdateWithoutChatsInput>
+}
+
+export type UserUpdateWithoutChatsInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contributions?: Prisma.contributionsUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+  streams?: Prisma.streamsUpdateManyWithoutUsersNestedInput
+}
+
+export type UserUncheckedUpdateWithoutChatsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contributions?: Prisma.contributionsUncheckedUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+  streams?: Prisma.streamsUncheckedUpdateManyWithoutUsersNestedInput
+}
+
+export type UserCreateWithoutContributionsInput = {
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_following_idTousersInput
+  streams?: Prisma.streamsCreateNestedManyWithoutUsersInput
+}
+
+export type UserUncheckedCreateWithoutContributionsInput = {
+  id?: number
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatUncheckedCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_following_idTousersInput
+  streams?: Prisma.streamsUncheckedCreateNestedManyWithoutUsersInput
+}
+
+export type UserCreateOrConnectWithoutContributionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutContributionsInput, Prisma.UserUncheckedCreateWithoutContributionsInput>
+}
+
+export type UserUpsertWithoutContributionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutContributionsInput, Prisma.UserUncheckedUpdateWithoutContributionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutContributionsInput, Prisma.UserUncheckedCreateWithoutContributionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutContributionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutContributionsInput, Prisma.UserUncheckedUpdateWithoutContributionsInput>
+}
+
+export type UserUpdateWithoutContributionsInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+  streams?: Prisma.streamsUpdateManyWithoutUsersNestedInput
+}
+
+export type UserUncheckedUpdateWithoutContributionsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUncheckedUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+  streams?: Prisma.streamsUncheckedUpdateManyWithoutUsersNestedInput
+}
+
+export type UserCreateWithoutDonations_donations_from_user_idTousersInput = {
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatCreateNestedManyWithoutUsersInput
+  contributions?: Prisma.contributionsCreateNestedManyWithoutUsersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_following_idTousersInput
+  streams?: Prisma.streamsCreateNestedManyWithoutUsersInput
+}
+
+export type UserUncheckedCreateWithoutDonations_donations_from_user_idTousersInput = {
+  id?: number
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatUncheckedCreateNestedManyWithoutUsersInput
+  contributions?: Prisma.contributionsUncheckedCreateNestedManyWithoutUsersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_following_idTousersInput
+  streams?: Prisma.streamsUncheckedCreateNestedManyWithoutUsersInput
+}
+
+export type UserCreateOrConnectWithoutDonations_donations_from_user_idTousersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDonations_donations_from_user_idTousersInput, Prisma.UserUncheckedCreateWithoutDonations_donations_from_user_idTousersInput>
+}
+
+export type UserCreateWithoutDonations_donations_to_user_idTousersInput = {
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatCreateNestedManyWithoutUsersInput
+  contributions?: Prisma.contributionsCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_following_idTousersInput
+  streams?: Prisma.streamsCreateNestedManyWithoutUsersInput
+}
+
+export type UserUncheckedCreateWithoutDonations_donations_to_user_idTousersInput = {
+  id?: number
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatUncheckedCreateNestedManyWithoutUsersInput
+  contributions?: Prisma.contributionsUncheckedCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_following_idTousersInput
+  streams?: Prisma.streamsUncheckedCreateNestedManyWithoutUsersInput
+}
+
+export type UserCreateOrConnectWithoutDonations_donations_to_user_idTousersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDonations_donations_to_user_idTousersInput, Prisma.UserUncheckedCreateWithoutDonations_donations_to_user_idTousersInput>
+}
+
+export type UserUpsertWithoutDonations_donations_from_user_idTousersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDonations_donations_from_user_idTousersInput, Prisma.UserUncheckedUpdateWithoutDonations_donations_from_user_idTousersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDonations_donations_from_user_idTousersInput, Prisma.UserUncheckedCreateWithoutDonations_donations_from_user_idTousersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDonations_donations_from_user_idTousersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDonations_donations_from_user_idTousersInput, Prisma.UserUncheckedUpdateWithoutDonations_donations_from_user_idTousersInput>
+}
+
+export type UserUpdateWithoutDonations_donations_from_user_idTousersInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUpdateManyWithoutUsersNestedInput
+  contributions?: Prisma.contributionsUpdateManyWithoutUsersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+  streams?: Prisma.streamsUpdateManyWithoutUsersNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDonations_donations_from_user_idTousersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUncheckedUpdateManyWithoutUsersNestedInput
+  contributions?: Prisma.contributionsUncheckedUpdateManyWithoutUsersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+  streams?: Prisma.streamsUncheckedUpdateManyWithoutUsersNestedInput
+}
+
+export type UserUpsertWithoutDonations_donations_to_user_idTousersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDonations_donations_to_user_idTousersInput, Prisma.UserUncheckedUpdateWithoutDonations_donations_to_user_idTousersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDonations_donations_to_user_idTousersInput, Prisma.UserUncheckedCreateWithoutDonations_donations_to_user_idTousersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDonations_donations_to_user_idTousersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDonations_donations_to_user_idTousersInput, Prisma.UserUncheckedUpdateWithoutDonations_donations_to_user_idTousersInput>
+}
+
+export type UserUpdateWithoutDonations_donations_to_user_idTousersInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUpdateManyWithoutUsersNestedInput
+  contributions?: Prisma.contributionsUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+  streams?: Prisma.streamsUpdateManyWithoutUsersNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDonations_donations_to_user_idTousersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUncheckedUpdateManyWithoutUsersNestedInput
+  contributions?: Prisma.contributionsUncheckedUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+  streams?: Prisma.streamsUncheckedUpdateManyWithoutUsersNestedInput
+}
+
+export type UserCreateWithoutFollows_follows_follower_idTousersInput = {
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatCreateNestedManyWithoutUsersInput
+  contributions?: Prisma.contributionsCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_following_idTousersInput
+  streams?: Prisma.streamsCreateNestedManyWithoutUsersInput
+}
+
+export type UserUncheckedCreateWithoutFollows_follows_follower_idTousersInput = {
+  id?: number
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatUncheckedCreateNestedManyWithoutUsersInput
+  contributions?: Prisma.contributionsUncheckedCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_following_idTousersInput
+  streams?: Prisma.streamsUncheckedCreateNestedManyWithoutUsersInput
+}
+
+export type UserCreateOrConnectWithoutFollows_follows_follower_idTousersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFollows_follows_follower_idTousersInput, Prisma.UserUncheckedCreateWithoutFollows_follows_follower_idTousersInput>
+}
+
+export type UserCreateWithoutFollows_follows_following_idTousersInput = {
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatCreateNestedManyWithoutUsersInput
+  contributions?: Prisma.contributionsCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  streams?: Prisma.streamsCreateNestedManyWithoutUsersInput
+}
+
+export type UserUncheckedCreateWithoutFollows_follows_following_idTousersInput = {
+  id?: number
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatUncheckedCreateNestedManyWithoutUsersInput
+  contributions?: Prisma.contributionsUncheckedCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  streams?: Prisma.streamsUncheckedCreateNestedManyWithoutUsersInput
+}
+
+export type UserCreateOrConnectWithoutFollows_follows_following_idTousersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFollows_follows_following_idTousersInput, Prisma.UserUncheckedCreateWithoutFollows_follows_following_idTousersInput>
+}
+
+export type UserUpsertWithoutFollows_follows_follower_idTousersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFollows_follows_follower_idTousersInput, Prisma.UserUncheckedUpdateWithoutFollows_follows_follower_idTousersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFollows_follows_follower_idTousersInput, Prisma.UserUncheckedCreateWithoutFollows_follows_follower_idTousersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFollows_follows_follower_idTousersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFollows_follows_follower_idTousersInput, Prisma.UserUncheckedUpdateWithoutFollows_follows_follower_idTousersInput>
+}
+
+export type UserUpdateWithoutFollows_follows_follower_idTousersInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUpdateManyWithoutUsersNestedInput
+  contributions?: Prisma.contributionsUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+  streams?: Prisma.streamsUpdateManyWithoutUsersNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFollows_follows_follower_idTousersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUncheckedUpdateManyWithoutUsersNestedInput
+  contributions?: Prisma.contributionsUncheckedUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+  streams?: Prisma.streamsUncheckedUpdateManyWithoutUsersNestedInput
+}
+
+export type UserUpsertWithoutFollows_follows_following_idTousersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFollows_follows_following_idTousersInput, Prisma.UserUncheckedUpdateWithoutFollows_follows_following_idTousersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFollows_follows_following_idTousersInput, Prisma.UserUncheckedCreateWithoutFollows_follows_following_idTousersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFollows_follows_following_idTousersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFollows_follows_following_idTousersInput, Prisma.UserUncheckedUpdateWithoutFollows_follows_following_idTousersInput>
+}
+
+export type UserUpdateWithoutFollows_follows_following_idTousersInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUpdateManyWithoutUsersNestedInput
+  contributions?: Prisma.contributionsUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  streams?: Prisma.streamsUpdateManyWithoutUsersNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFollows_follows_following_idTousersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUncheckedUpdateManyWithoutUsersNestedInput
+  contributions?: Prisma.contributionsUncheckedUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  streams?: Prisma.streamsUncheckedUpdateManyWithoutUsersNestedInput
+}
+
+export type UserCreateWithoutStreamsInput = {
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatCreateNestedManyWithoutUsersInput
+  contributions?: Prisma.contributionsCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsCreateNestedManyWithoutUsers_follows_following_idTousersInput
+}
+
+export type UserUncheckedCreateWithoutStreamsInput = {
+  id?: number
+  email: string
+  username: string
+  password: string
+  profile_image_url?: string | null
+  bio?: string | null
+  points?: number | null
+  is_email_verified?: boolean | null
+  email_verify_token?: string | null
+  created_at?: Date | string
+  chats?: Prisma.ChatUncheckedCreateNestedManyWithoutUsersInput
+  contributions?: Prisma.contributionsUncheckedCreateNestedManyWithoutUsersInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_from_user_idTousersInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedCreateNestedManyWithoutUsers_donations_to_user_idTousersInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_follower_idTousersInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedCreateNestedManyWithoutUsers_follows_following_idTousersInput
+}
+
+export type UserCreateOrConnectWithoutStreamsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutStreamsInput, Prisma.UserUncheckedCreateWithoutStreamsInput>
+}
+
+export type UserUpsertWithoutStreamsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutStreamsInput, Prisma.UserUncheckedUpdateWithoutStreamsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutStreamsInput, Prisma.UserUncheckedCreateWithoutStreamsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutStreamsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutStreamsInput, Prisma.UserUncheckedUpdateWithoutStreamsInput>
+}
+
+export type UserUpdateWithoutStreamsInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUpdateManyWithoutUsersNestedInput
+  contributions?: Prisma.contributionsUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+}
+
+export type UserUncheckedUpdateWithoutStreamsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  email_verify_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  chats?: Prisma.ChatUncheckedUpdateManyWithoutUsersNestedInput
+  contributions?: Prisma.contributionsUncheckedUpdateManyWithoutUsersNestedInput
+  donations_donations_from_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_from_user_idTousersNestedInput
+  donations_donations_to_user_idTousers?: Prisma.donationsUncheckedUpdateManyWithoutUsers_donations_to_user_idTousersNestedInput
+  follows_follows_follower_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_follower_idTousersNestedInput
+  follows_follows_following_idTousers?: Prisma.followsUncheckedUpdateManyWithoutUsers_follows_following_idTousersNestedInput
+}
+
+
+/**
+ * Count Type UserCountOutputType
+ */
+
+export type UserCountOutputType = {
+  chats: number
+  contributions: number
+  donations_donations_from_user_idTousers: number
+  donations_donations_to_user_idTousers: number
+  follows_follows_follower_idTousers: number
+  follows_follows_following_idTousers: number
+  streams: number
+}
+
+export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  chats?: boolean | UserCountOutputTypeCountChatsArgs
+  contributions?: boolean | UserCountOutputTypeCountContributionsArgs
+  donations_donations_from_user_idTousers?: boolean | UserCountOutputTypeCountDonations_donations_from_user_idTousersArgs
+  donations_donations_to_user_idTousers?: boolean | UserCountOutputTypeCountDonations_donations_to_user_idTousersArgs
+  follows_follows_follower_idTousers?: boolean | UserCountOutputTypeCountFollows_follows_follower_idTousersArgs
+  follows_follows_following_idTousers?: boolean | UserCountOutputTypeCountFollows_follows_following_idTousersArgs
+  streams?: boolean | UserCountOutputTypeCountStreamsArgs
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserCountOutputType
+   */
+  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountChatsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ChatWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountContributionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.contributionsWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDonations_donations_from_user_idTousersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.donationsWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDonations_donations_to_user_idTousersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.donationsWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountFollows_follows_follower_idTousersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.followsWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountFollows_follows_following_idTousersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.followsWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountStreamsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.streamsWhereInput
+}
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -343,6 +1366,20 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   username?: boolean
   password?: boolean
+  profile_image_url?: boolean
+  bio?: boolean
+  points?: boolean
+  is_email_verified?: boolean
+  email_verify_token?: boolean
+  created_at?: boolean
+  chats?: boolean | Prisma.User$chatsArgs<ExtArgs>
+  contributions?: boolean | Prisma.User$contributionsArgs<ExtArgs>
+  donations_donations_from_user_idTousers?: boolean | Prisma.User$donations_donations_from_user_idTousersArgs<ExtArgs>
+  donations_donations_to_user_idTousers?: boolean | Prisma.User$donations_donations_to_user_idTousersArgs<ExtArgs>
+  follows_follows_follower_idTousers?: boolean | Prisma.User$follows_follows_follower_idTousersArgs<ExtArgs>
+  follows_follows_following_idTousers?: boolean | Prisma.User$follows_follows_following_idTousersArgs<ExtArgs>
+  streams?: boolean | Prisma.User$streamsArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -350,6 +1387,12 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   username?: boolean
   password?: boolean
+  profile_image_url?: boolean
+  bio?: boolean
+  points?: boolean
+  is_email_verified?: boolean
+  email_verify_token?: boolean
+  created_at?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -357,6 +1400,12 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   username?: boolean
   password?: boolean
+  profile_image_url?: boolean
+  bio?: boolean
+  points?: boolean
+  is_email_verified?: boolean
+  email_verify_token?: boolean
+  created_at?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -364,18 +1413,50 @@ export type UserSelectScalar = {
   email?: boolean
   username?: boolean
   password?: boolean
+  profile_image_url?: boolean
+  bio?: boolean
+  points?: boolean
+  is_email_verified?: boolean
+  email_verify_token?: boolean
+  created_at?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "username" | "password", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "username" | "password" | "profile_image_url" | "bio" | "points" | "is_email_verified" | "email_verify_token" | "created_at", ExtArgs["result"]["user"]>
+export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  chats?: boolean | Prisma.User$chatsArgs<ExtArgs>
+  contributions?: boolean | Prisma.User$contributionsArgs<ExtArgs>
+  donations_donations_from_user_idTousers?: boolean | Prisma.User$donations_donations_from_user_idTousersArgs<ExtArgs>
+  donations_donations_to_user_idTousers?: boolean | Prisma.User$donations_donations_to_user_idTousersArgs<ExtArgs>
+  follows_follows_follower_idTousers?: boolean | Prisma.User$follows_follows_follower_idTousersArgs<ExtArgs>
+  follows_follows_following_idTousers?: boolean | Prisma.User$follows_follows_following_idTousersArgs<ExtArgs>
+  streams?: boolean | Prisma.User$streamsArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
-  objects: {}
+  objects: {
+    chats: Prisma.$ChatPayload<ExtArgs>[]
+    contributions: Prisma.$contributionsPayload<ExtArgs>[]
+    donations_donations_from_user_idTousers: Prisma.$donationsPayload<ExtArgs>[]
+    donations_donations_to_user_idTousers: Prisma.$donationsPayload<ExtArgs>[]
+    follows_follows_follower_idTousers: Prisma.$followsPayload<ExtArgs>[]
+    follows_follows_following_idTousers: Prisma.$followsPayload<ExtArgs>[]
+    streams: Prisma.$streamsPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     email: string
     username: string
     password: string
+    profile_image_url: string | null
+    bio: string | null
+    points: number | null
+    is_email_verified: boolean | null
+    email_verify_token: string | null
+    created_at: Date
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -770,6 +1851,13 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  chats<T extends Prisma.User$chatsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$chatsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  contributions<T extends Prisma.User$contributionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$contributionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$contributionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  donations_donations_from_user_idTousers<T extends Prisma.User$donations_donations_from_user_idTousersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$donations_donations_from_user_idTousersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$donationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  donations_donations_to_user_idTousers<T extends Prisma.User$donations_donations_to_user_idTousersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$donations_donations_to_user_idTousersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$donationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  follows_follows_follower_idTousers<T extends Prisma.User$follows_follows_follower_idTousersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$follows_follows_follower_idTousersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$followsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  follows_follows_following_idTousers<T extends Prisma.User$follows_follows_following_idTousersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$follows_follows_following_idTousersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$followsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  streams<T extends Prisma.User$streamsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$streamsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$streamsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -803,6 +1891,12 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly username: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
+  readonly profile_image_url: Prisma.FieldRef<"User", 'String'>
+  readonly bio: Prisma.FieldRef<"User", 'String'>
+  readonly points: Prisma.FieldRef<"User", 'Int'>
+  readonly is_email_verified: Prisma.FieldRef<"User", 'Boolean'>
+  readonly email_verify_token: Prisma.FieldRef<"User", 'String'>
+  readonly created_at: Prisma.FieldRef<"User", 'DateTime'>
 }
     
 
@@ -819,6 +1913,10 @@ export type UserFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which User to fetch.
    */
@@ -838,6 +1936,10 @@ export type UserFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where: Prisma.UserWhereUniqueInput
@@ -855,6 +1957,10 @@ export type UserFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which User to fetch.
    */
@@ -904,6 +2010,10 @@ export type UserFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where?: Prisma.UserWhereInput
@@ -952,6 +2062,10 @@ export type UserFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which Users to fetch.
    */
   where?: Prisma.UserWhereInput
@@ -994,6 +2108,10 @@ export type UserCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * The data needed to create a User.
    */
@@ -1042,6 +2160,10 @@ export type UserUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * The data needed to update a User.
    */
@@ -1109,6 +2231,10 @@ export type UserUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * The filter to search for the User to update in case it exists.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1135,6 +2261,10 @@ export type UserDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter which User to delete.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1155,6 +2285,174 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * User.chats
+ */
+export type User$chatsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Chat
+   */
+  select?: Prisma.ChatSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Chat
+   */
+  omit?: Prisma.ChatOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ChatInclude<ExtArgs> | null
+  where?: Prisma.ChatWhereInput
+  orderBy?: Prisma.ChatOrderByWithRelationInput | Prisma.ChatOrderByWithRelationInput[]
+  cursor?: Prisma.ChatWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ChatScalarFieldEnum | Prisma.ChatScalarFieldEnum[]
+}
+
+/**
+ * User.contributions
+ */
+export type User$contributionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the contributions
+   */
+  select?: Prisma.contributionsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the contributions
+   */
+  omit?: Prisma.contributionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.contributionsInclude<ExtArgs> | null
+  where?: Prisma.contributionsWhereInput
+  orderBy?: Prisma.contributionsOrderByWithRelationInput | Prisma.contributionsOrderByWithRelationInput[]
+  cursor?: Prisma.contributionsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContributionsScalarFieldEnum | Prisma.ContributionsScalarFieldEnum[]
+}
+
+/**
+ * User.donations_donations_from_user_idTousers
+ */
+export type User$donations_donations_from_user_idTousersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the donations
+   */
+  select?: Prisma.donationsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the donations
+   */
+  omit?: Prisma.donationsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.donationsInclude<ExtArgs> | null
+  where?: Prisma.donationsWhereInput
+  orderBy?: Prisma.donationsOrderByWithRelationInput | Prisma.donationsOrderByWithRelationInput[]
+  cursor?: Prisma.donationsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DonationsScalarFieldEnum | Prisma.DonationsScalarFieldEnum[]
+}
+
+/**
+ * User.donations_donations_to_user_idTousers
+ */
+export type User$donations_donations_to_user_idTousersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the donations
+   */
+  select?: Prisma.donationsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the donations
+   */
+  omit?: Prisma.donationsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.donationsInclude<ExtArgs> | null
+  where?: Prisma.donationsWhereInput
+  orderBy?: Prisma.donationsOrderByWithRelationInput | Prisma.donationsOrderByWithRelationInput[]
+  cursor?: Prisma.donationsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DonationsScalarFieldEnum | Prisma.DonationsScalarFieldEnum[]
+}
+
+/**
+ * User.follows_follows_follower_idTousers
+ */
+export type User$follows_follows_follower_idTousersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the follows
+   */
+  select?: Prisma.followsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the follows
+   */
+  omit?: Prisma.followsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.followsInclude<ExtArgs> | null
+  where?: Prisma.followsWhereInput
+  orderBy?: Prisma.followsOrderByWithRelationInput | Prisma.followsOrderByWithRelationInput[]
+  cursor?: Prisma.followsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FollowsScalarFieldEnum | Prisma.FollowsScalarFieldEnum[]
+}
+
+/**
+ * User.follows_follows_following_idTousers
+ */
+export type User$follows_follows_following_idTousersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the follows
+   */
+  select?: Prisma.followsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the follows
+   */
+  omit?: Prisma.followsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.followsInclude<ExtArgs> | null
+  where?: Prisma.followsWhereInput
+  orderBy?: Prisma.followsOrderByWithRelationInput | Prisma.followsOrderByWithRelationInput[]
+  cursor?: Prisma.followsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FollowsScalarFieldEnum | Prisma.FollowsScalarFieldEnum[]
+}
+
+/**
+ * User.streams
+ */
+export type User$streamsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the streams
+   */
+  select?: Prisma.streamsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the streams
+   */
+  omit?: Prisma.streamsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.streamsInclude<ExtArgs> | null
+  where?: Prisma.streamsWhereInput
+  orderBy?: Prisma.streamsOrderByWithRelationInput | Prisma.streamsOrderByWithRelationInput[]
+  cursor?: Prisma.streamsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StreamsScalarFieldEnum | Prisma.StreamsScalarFieldEnum[]
+}
+
+/**
  * User without action
  */
 export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1166,4 +2464,8 @@ export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
 }
