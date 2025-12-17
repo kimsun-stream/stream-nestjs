@@ -9,11 +9,6 @@ datasource db {
 
 // template model
 model User {
-<<<<<<< HEAD
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-=======
   id       Int    @id @default(autoincrement())
   email    String @unique
   username String @unique
@@ -31,5 +26,4 @@ model Chat {
   createdAt DateTime @map("created_at")
 
   @@map("chats")
->>>>>>> feature/chat
 }
