@@ -4,13 +4,13 @@ import z from 'zod';
 const SendMessageSchema = z.object({
   roomId: z.string(),
   message: z.string(),
-  token: z.string().optional(),
+  token: z.string(),
 });
 
 const GetMessagesSchema = z.object({
   roomId: z.string(),
   limit: z.number(),
-  nextCursor: z.date().optional(),
+  nextCursor: z.date(),
 });
 
 export class SendMessageDto extends createZodDto(SendMessageSchema) {}
