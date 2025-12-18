@@ -15,40 +15,40 @@ export class ChatService {
   ) {}
 
   async sendMessage(dto: SendMessageDto, client: Socket) {
-    const { token, roomId, message } = dto;
+    const { token, streamId, message } = dto;
 
     const result = await this.authService.isValidToken(token);
     if (!result) return client.emit('Invalid token');
 
-    const len = await this.redis.llen(`chat:history:${roomId}`);
+    const len = await this.redis.llen(`chat:history:${streamId}`);
 
     const msg = {
       message,
-      roomId,
+      streamId,
       userId: result.userId,
       username: result.username,
       createdAt: new Date(),
     };
 
     if (len >= 100) {
-      const jsonStringMessages = await this.redis.lrange(`chat:history:${roomId}`, 0, -1);
+      const jsonStringMessages = await this.redis.lrange(`chat:history:${streamId}`, 0, -1);
       const messages = jsonStringMessages.map((msg) => JSON.parse(msg));
 
-      await this.redis.del(`chat:history:${roomId}`);
+      await this.redis.del(`chat:history:${streamId}`);
 
       await this.prisma.chat.createMany({
         data: messages,
       });
     } else {
-      await this.redis.lpush(`chat:history:${roomId}`, JSON.stringify(msg));
+      await this.redis.lpush(`chat:history:${streamId}`, JSON.stringify(msg));
     }
     return msg;
   }
 
   async getMessages(dto: GetMessagesDto): Promise<{ messages: Chat[]; nextCursor: Date | null }> {
-    const { roomId, limit, nextCursor } = dto;
+    const { streamId, limit, nextCursor } = dto;
 
-    const redisString = await this.redis.lrange(`chat:history:${roomId}`, 0, -1);
+    const redisString = await this.redis.lrange(`chat:history:${streamId}`, 0, -1);
 
     let redisMessages = redisString
       .map((msg) => JSON.parse(msg) as Chat)
@@ -58,7 +58,7 @@ export class ChatService {
 
     if (need > 0) {
       dbMessages = await this.prisma.chat.findMany({
-        where: { roomId, createdAt: { lt: nextCursor } },
+        where: { stream_id: streamId, createdAt: { lt: nextCursor } },
         orderBy: [{ createdAt: 'asc' }, { id: 'asc' }],
         take: need + 1,
       });

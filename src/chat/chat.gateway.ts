@@ -31,18 +31,18 @@ export class ChatGateway {
 
   @SubscribeMessage('joinChatRoom')
   async handleJoinChatRoom(
-    @MessageBody() data: { roomId: string },
+    @MessageBody() data: { streamId: number },
     @ConnectedSocket() client: Socket,
   ) {
-    client.join(data.roomId);
-    client.emit('joined', { roomId: data.roomId });
+    client.join(data.streamId.toString());
+    client.emit('joined', { streamId: data.streamId });
   }
 
   @SubscribeMessage('sendMessage')
   async handleMessage(@MessageBody() data: SendMessageDto, @ConnectedSocket() client: Socket) {
     console.log(data);
     const result = await this.chatService.sendMessage(data, client);
-    this.server.to(data.roomId).emit('newMessage', result);
+    this.server.to(data.streamId.toString()).emit('newMessage', result);
   }
 
   @SubscribeMessage('getMessages')
