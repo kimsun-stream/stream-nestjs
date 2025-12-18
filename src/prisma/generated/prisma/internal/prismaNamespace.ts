@@ -1052,7 +1052,7 @@ export const StreamsScalarFieldEnum = {
   description: 'description',
   thumbnail_url: 'thumbnail_url',
   category: 'category',
-  status: 'status',
+  is_live: 'is_live',
   viewer_count: 'viewer_count',
   started_at: 'started_at',
   ended_at: 'ended_at',

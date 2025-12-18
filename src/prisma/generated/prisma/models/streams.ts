@@ -45,7 +45,7 @@ export type StreamsMinAggregateOutputType = {
   description: string | null
   thumbnail_url: string | null
   category: string | null
-  status: string | null
+  is_live: boolean | null
   viewer_count: number | null
   started_at: Date | null
   ended_at: Date | null
@@ -59,7 +59,7 @@ export type StreamsMaxAggregateOutputType = {
   description: string | null
   thumbnail_url: string | null
   category: string | null
-  status: string | null
+  is_live: boolean | null
   viewer_count: number | null
   started_at: Date | null
   ended_at: Date | null
@@ -73,7 +73,7 @@ export type StreamsCountAggregateOutputType = {
   description: number
   thumbnail_url: number
   category: number
-  status: number
+  is_live: number
   viewer_count: number
   started_at: number
   ended_at: number
@@ -101,7 +101,7 @@ export type StreamsMinAggregateInputType = {
   description?: true
   thumbnail_url?: true
   category?: true
-  status?: true
+  is_live?: true
   viewer_count?: true
   started_at?: true
   ended_at?: true
@@ -115,7 +115,7 @@ export type StreamsMaxAggregateInputType = {
   description?: true
   thumbnail_url?: true
   category?: true
-  status?: true
+  is_live?: true
   viewer_count?: true
   started_at?: true
   ended_at?: true
@@ -129,7 +129,7 @@ export type StreamsCountAggregateInputType = {
   description?: true
   thumbnail_url?: true
   category?: true
-  status?: true
+  is_live?: true
   viewer_count?: true
   started_at?: true
   ended_at?: true
@@ -230,7 +230,7 @@ export type StreamsGroupByOutputType = {
   description: string | null
   thumbnail_url: string | null
   category: string | null
-  status: string
+  is_live: boolean
   viewer_count: number | null
   started_at: Date | null
   ended_at: Date | null
@@ -267,7 +267,7 @@ export type streamsWhereInput = {
   description?: Prisma.StringNullableFilter<"streams"> | string | null
   thumbnail_url?: Prisma.StringNullableFilter<"streams"> | string | null
   category?: Prisma.StringNullableFilter<"streams"> | string | null
-  status?: Prisma.StringFilter<"streams"> | string
+  is_live?: Prisma.BoolFilter<"streams"> | boolean
   viewer_count?: Prisma.IntNullableFilter<"streams"> | number | null
   started_at?: Prisma.DateTimeNullableFilter<"streams"> | Date | string | null
   ended_at?: Prisma.DateTimeNullableFilter<"streams"> | Date | string | null
@@ -286,7 +286,7 @@ export type streamsOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   thumbnail_url?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
-  status?: Prisma.SortOrder
+  is_live?: Prisma.SortOrder
   viewer_count?: Prisma.SortOrderInput | Prisma.SortOrder
   started_at?: Prisma.SortOrderInput | Prisma.SortOrder
   ended_at?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -308,7 +308,7 @@ export type streamsWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"streams"> | string | null
   thumbnail_url?: Prisma.StringNullableFilter<"streams"> | string | null
   category?: Prisma.StringNullableFilter<"streams"> | string | null
-  status?: Prisma.StringFilter<"streams"> | string
+  is_live?: Prisma.BoolFilter<"streams"> | boolean
   viewer_count?: Prisma.IntNullableFilter<"streams"> | number | null
   started_at?: Prisma.DateTimeNullableFilter<"streams"> | Date | string | null
   ended_at?: Prisma.DateTimeNullableFilter<"streams"> | Date | string | null
@@ -327,7 +327,7 @@ export type streamsOrderByWithAggregationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   thumbnail_url?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
-  status?: Prisma.SortOrder
+  is_live?: Prisma.SortOrder
   viewer_count?: Prisma.SortOrderInput | Prisma.SortOrder
   started_at?: Prisma.SortOrderInput | Prisma.SortOrder
   ended_at?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -349,7 +349,7 @@ export type streamsScalarWhereWithAggregatesInput = {
   description?: Prisma.StringNullableWithAggregatesFilter<"streams"> | string | null
   thumbnail_url?: Prisma.StringNullableWithAggregatesFilter<"streams"> | string | null
   category?: Prisma.StringNullableWithAggregatesFilter<"streams"> | string | null
-  status?: Prisma.StringWithAggregatesFilter<"streams"> | string
+  is_live?: Prisma.BoolWithAggregatesFilter<"streams"> | boolean
   viewer_count?: Prisma.IntNullableWithAggregatesFilter<"streams"> | number | null
   started_at?: Prisma.DateTimeNullableWithAggregatesFilter<"streams"> | Date | string | null
   ended_at?: Prisma.DateTimeNullableWithAggregatesFilter<"streams"> | Date | string | null
@@ -361,7 +361,7 @@ export type streamsCreateInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -380,7 +380,7 @@ export type streamsUncheckedCreateInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -396,7 +396,7 @@ export type streamsUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -415,7 +415,7 @@ export type streamsUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -433,7 +433,7 @@ export type streamsCreateManyInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -445,7 +445,7 @@ export type streamsUpdateManyMutationInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -459,7 +459,7 @@ export type streamsUncheckedUpdateManyInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -493,7 +493,7 @@ export type streamsCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   thumbnail_url?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  is_live?: Prisma.SortOrder
   viewer_count?: Prisma.SortOrder
   started_at?: Prisma.SortOrder
   ended_at?: Prisma.SortOrder
@@ -513,7 +513,7 @@ export type streamsMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   thumbnail_url?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  is_live?: Prisma.SortOrder
   viewer_count?: Prisma.SortOrder
   started_at?: Prisma.SortOrder
   ended_at?: Prisma.SortOrder
@@ -527,7 +527,7 @@ export type streamsMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   thumbnail_url?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  is_live?: Prisma.SortOrder
   viewer_count?: Prisma.SortOrder
   started_at?: Prisma.SortOrder
   ended_at?: Prisma.SortOrder
@@ -640,6 +640,10 @@ export type streamsUpdateOneRequiredWithoutStream_sessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.streamsUpdateToOneWithWhereWithoutStream_sessionsInput, Prisma.streamsUpdateWithoutStream_sessionsInput>, Prisma.streamsUncheckedUpdateWithoutStream_sessionsInput>
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
@@ -649,7 +653,7 @@ export type streamsCreateWithoutUsersInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -666,7 +670,7 @@ export type streamsUncheckedCreateWithoutUsersInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -713,7 +717,7 @@ export type streamsScalarWhereInput = {
   description?: Prisma.StringNullableFilter<"streams"> | string | null
   thumbnail_url?: Prisma.StringNullableFilter<"streams"> | string | null
   category?: Prisma.StringNullableFilter<"streams"> | string | null
-  status?: Prisma.StringFilter<"streams"> | string
+  is_live?: Prisma.BoolFilter<"streams"> | boolean
   viewer_count?: Prisma.IntNullableFilter<"streams"> | number | null
   started_at?: Prisma.DateTimeNullableFilter<"streams"> | Date | string | null
   ended_at?: Prisma.DateTimeNullableFilter<"streams"> | Date | string | null
@@ -725,7 +729,7 @@ export type streamsCreateWithoutChatsInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -743,7 +747,7 @@ export type streamsUncheckedCreateWithoutChatsInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -774,7 +778,7 @@ export type streamsUpdateWithoutChatsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -792,7 +796,7 @@ export type streamsUncheckedUpdateWithoutChatsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -807,7 +811,7 @@ export type streamsCreateWithoutContributionsInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -825,7 +829,7 @@ export type streamsUncheckedCreateWithoutContributionsInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -856,7 +860,7 @@ export type streamsUpdateWithoutContributionsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -874,7 +878,7 @@ export type streamsUncheckedUpdateWithoutContributionsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -889,7 +893,7 @@ export type streamsCreateWithoutDonationsInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -907,7 +911,7 @@ export type streamsUncheckedCreateWithoutDonationsInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -938,7 +942,7 @@ export type streamsUpdateWithoutDonationsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -956,7 +960,7 @@ export type streamsUncheckedUpdateWithoutDonationsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -971,7 +975,7 @@ export type streamsCreateWithoutStream_sessionsInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -989,7 +993,7 @@ export type streamsUncheckedCreateWithoutStream_sessionsInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -1020,7 +1024,7 @@ export type streamsUpdateWithoutStream_sessionsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1038,7 +1042,7 @@ export type streamsUncheckedUpdateWithoutStream_sessionsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1054,7 +1058,7 @@ export type streamsCreateManyUsersInput = {
   description?: string | null
   thumbnail_url?: string | null
   category?: string | null
-  status?: string
+  is_live?: boolean
   viewer_count?: number | null
   started_at?: Date | string | null
   ended_at?: Date | string | null
@@ -1066,7 +1070,7 @@ export type streamsUpdateWithoutUsersInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1083,7 +1087,7 @@ export type streamsUncheckedUpdateWithoutUsersInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1100,7 +1104,7 @@ export type streamsUncheckedUpdateManyWithoutUsersInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnail_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  is_live?: Prisma.BoolFieldUpdateOperationsInput | boolean
   viewer_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1172,7 +1176,7 @@ export type streamsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   description?: boolean
   thumbnail_url?: boolean
   category?: boolean
-  status?: boolean
+  is_live?: boolean
   viewer_count?: boolean
   started_at?: boolean
   ended_at?: boolean
@@ -1192,7 +1196,7 @@ export type streamsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   description?: boolean
   thumbnail_url?: boolean
   category?: boolean
-  status?: boolean
+  is_live?: boolean
   viewer_count?: boolean
   started_at?: boolean
   ended_at?: boolean
@@ -1207,7 +1211,7 @@ export type streamsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   description?: boolean
   thumbnail_url?: boolean
   category?: boolean
-  status?: boolean
+  is_live?: boolean
   viewer_count?: boolean
   started_at?: boolean
   ended_at?: boolean
@@ -1222,14 +1226,14 @@ export type streamsSelectScalar = {
   description?: boolean
   thumbnail_url?: boolean
   category?: boolean
-  status?: boolean
+  is_live?: boolean
   viewer_count?: boolean
   started_at?: boolean
   ended_at?: boolean
   created_at?: boolean
 }
 
-export type streamsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "title" | "description" | "thumbnail_url" | "category" | "status" | "viewer_count" | "started_at" | "ended_at" | "created_at", ExtArgs["result"]["streams"]>
+export type streamsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "title" | "description" | "thumbnail_url" | "category" | "is_live" | "viewer_count" | "started_at" | "ended_at" | "created_at", ExtArgs["result"]["streams"]>
 export type streamsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   chats?: boolean | Prisma.streams$chatsArgs<ExtArgs>
   contributions?: boolean | Prisma.streams$contributionsArgs<ExtArgs>
@@ -1261,7 +1265,7 @@ export type $streamsPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     description: string | null
     thumbnail_url: string | null
     category: string | null
-    status: string
+    is_live: boolean
     viewer_count: number | null
     started_at: Date | null
     ended_at: Date | null
@@ -1700,7 +1704,7 @@ export interface streamsFieldRefs {
   readonly description: Prisma.FieldRef<"streams", 'String'>
   readonly thumbnail_url: Prisma.FieldRef<"streams", 'String'>
   readonly category: Prisma.FieldRef<"streams", 'String'>
-  readonly status: Prisma.FieldRef<"streams", 'String'>
+  readonly is_live: Prisma.FieldRef<"streams", 'Boolean'>
   readonly viewer_count: Prisma.FieldRef<"streams", 'Int'>
   readonly started_at: Prisma.FieldRef<"streams", 'DateTime'>
   readonly ended_at: Prisma.FieldRef<"streams", 'DateTime'>
