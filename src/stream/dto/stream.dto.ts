@@ -1,10 +1,9 @@
 import { createZodDto } from 'nestjs-zod';
 import z from 'zod';
-import { StreamStatus } from '../stream-status';
 
 const GetStreamsSchema = z.object({
-  limit: z.number(),
-  cursor: z.number(),
+  limit: z.number().default(20),
+  cursor: z.number().default(0),
 });
 
 const CreateStreamSchema = z.object({
@@ -15,7 +14,6 @@ const CreateStreamSchema = z.object({
 const UpdateStreamSchema = z.object({
   title: z.string().optional(),
   description: z.string().optional(),
-  streamStatus: z.enum(StreamStatus).optional(),
 });
 
 export class GetStreamsDto extends createZodDto(GetStreamsSchema) {}

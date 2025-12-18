@@ -4,7 +4,7 @@ import z from 'zod';
 export const BaseResponseSchema = z.object({
   statusCode: z.number().default(HttpStatus.OK),
   success: z.boolean().default(true),
-  data: z.json().default(null),
+  data: z.any().default(null),
   message: z.string().default(''),
 });
 
