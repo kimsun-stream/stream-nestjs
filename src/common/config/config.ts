@@ -6,4 +6,5 @@ export default () => ({
   REDIS_PORT: process.env.REDIS_PORT,
   REDIS_PASSWORD: process.env.REDIS_PASSWORD,
   JWT_SECRET: process.env.JWT_SECRET,
+  AXUM_SERVER_URL: process.env.AXUM_SERVER_URL,
 });
