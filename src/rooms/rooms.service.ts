@@ -10,13 +10,19 @@ import { RedisService } from 'src/common/redis/redis.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UpdateRoomDto } from './dto/update-room.dto';
 import { FindAllRoomDto } from './dto/find-room.dto';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class RoomsService {
+  private readonly axumServerUrl: string;
+
   constructor(
     private readonly redis: RedisService,
     private readonly prisma: PrismaService,
-  ) {}
+    private readonly configService: ConfigService,
+  ) {
+    this.axumServerUrl = this.configService.getOrThrow('AXUM_SERVER_URL');
+  }
 
   async findAll(q: FindAllRoomDto) {
     const { page, limit, sort, isLive } = q;
@@ -79,7 +85,7 @@ export class RoomsService {
       data: { title, description, created_at, user_id: userId },
     });
 
-    const res = await fetch(`http://localhost:8080/room/${room.id}`, {
+    const res = await fetch(`${this.axumServerUrl}/room/${room.id}`, {
       method: 'POST',
     });
     if (!res.ok) {
@@ -115,7 +121,7 @@ export class RoomsService {
     await this.redis.sadd('live_rooms', roomId);
     await this.redis.set(`streamer:${userId}`, roomId);
 
-    const res = await fetch(`http://localhost:8080/room/${roomId}`, {
+    const res = await fetch(`${this.axumServerUrl}/room/${roomId}`, {
       method: 'PATCH',
       body: JSON.stringify({ state: 'live' }),
     });
@@ -137,7 +143,7 @@ export class RoomsService {
 
     const roomId = room.id;
 
-    const res = await fetch(`http://localhost:8080/room/${roomId}`, {
+    const res = await fetch(`${this.axumServerUrl}/room/${roomId}`, {
       method: 'DELETE',
     });
     if (!res.ok) throw new InternalServerErrorException('스트리밍 서버 삭제 실패');
