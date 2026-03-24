@@ -52,14 +52,14 @@ export class ChatService {
 
     let redisMessages = redisString
       .map((msg) => JSON.parse(msg) as Chat)
-      .filter((msg) => new Date(msg.createdAt) < new Date(nextCursor));
+      .filter((msg) => new Date(msg.created_at) < new Date(nextCursor));
     let dbMessages: Chat[] = [];
     const need = limit - redisMessages.length;
 
     if (need > 0) {
       dbMessages = await this.prisma.chat.findMany({
-        where: { roomId, createdAt: { lt: nextCursor } },
-        orderBy: [{ createdAt: 'asc' }, { id: 'asc' }],
+        where: { room_id: +roomId, created_at: { lt: nextCursor } },
+        orderBy: [{ created_at: 'asc' }, { id: 'asc' }],
         take: need + 1,
       });
     } else if (need < 0) {
@@ -68,8 +68,8 @@ export class ChatService {
 
     const messages = [...redisMessages, ...dbMessages];
 
-    const resNextCursor = messages[messages.length - 1].createdAt
-      ? messages[messages.length - 1].createdAt
+    const resNextCursor = messages[messages.length - 1].created_at
+      ? messages[messages.length - 1].created_at
       : null;
 
     messages.slice(0, messages.length - 1);
