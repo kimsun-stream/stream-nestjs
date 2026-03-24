@@ -8,6 +8,7 @@ import { JwtStrategy } from './auth/strategy/jwt.strategy';
 import config from './common/config/config';
 import { RedisModule } from './common/redis/redis.module';
 import { ChatModule } from './chat/chat.module';
+import { RoomsModule } from './rooms/rooms.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ChatModule } from './chat/chat.module';
     PrismaModule,
     AuthModule,
     ChatModule,
+    RoomsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

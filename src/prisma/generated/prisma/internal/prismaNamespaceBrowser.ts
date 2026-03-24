@@ -53,11 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Chat: 'Chat',
-  contributions: 'contributions',
-  donations: 'donations',
   follows: 'follows',
-  stream_sessions: 'stream_sessions',
-  streams: 'streams'
+  rooms: 'rooms'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -66,12 +63,12 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName]
  * Enums
  */
 
-export const TransactionIsolationLevel = {
+export const TransactionIsolationLevel = runtime.makeStrictEnum({
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
   RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
-} as const
+} as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
@@ -82,8 +79,6 @@ export const UserScalarFieldEnum = {
   username: 'username',
   password: 'password',
   profile_image_url: 'profile_image_url',
-  bio: 'bio',
-  points: 'points',
   is_email_verified: 'is_email_verified',
   email_verify_token: 'email_verify_token',
   created_at: 'created_at'
@@ -95,41 +90,12 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const ChatScalarFieldEnum = {
   id: 'id',
   message: 'message',
-  stream_id: 'stream_id',
-  userId: 'userId',
-  createdAt: 'createdAt'
+  room_id: 'room_id',
+  user_id: 'user_id',
+  created_at: 'created_at'
 } as const
 
 export type ChatScalarFieldEnum = (typeof ChatScalarFieldEnum)[keyof typeof ChatScalarFieldEnum]
-
-
-export const ContributionsScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  stream_id: 'stream_id',
-  bytes_relayed: 'bytes_relayed',
-  duration_seconds: 'duration_seconds',
-  quality_score: 'quality_score',
-  points_earned: 'points_earned',
-  created_at: 'created_at'
-} as const
-
-export type ContributionsScalarFieldEnum = (typeof ContributionsScalarFieldEnum)[keyof typeof ContributionsScalarFieldEnum]
-
-
-export const DonationsScalarFieldEnum = {
-  id: 'id',
-  from_user_id: 'from_user_id',
-  to_user_id: 'to_user_id',
-  stream_id: 'stream_id',
-  amount: 'amount',
-  message: 'message',
-  payment_key: 'payment_key',
-  status: 'status',
-  created_at: 'created_at'
-} as const
-
-export type DonationsScalarFieldEnum = (typeof DonationsScalarFieldEnum)[keyof typeof DonationsScalarFieldEnum]
 
 
 export const FollowsScalarFieldEnum = {
@@ -142,33 +108,19 @@ export const FollowsScalarFieldEnum = {
 export type FollowsScalarFieldEnum = (typeof FollowsScalarFieldEnum)[keyof typeof FollowsScalarFieldEnum]
 
 
-export const Stream_sessionsScalarFieldEnum = {
-  id: 'id',
-  stream_id: 'stream_id',
-  recording_url: 'recording_url',
-  duration_seconds: 'duration_seconds',
-  view_count: 'view_count',
-  created_at: 'created_at'
-} as const
-
-export type Stream_sessionsScalarFieldEnum = (typeof Stream_sessionsScalarFieldEnum)[keyof typeof Stream_sessionsScalarFieldEnum]
-
-
-export const StreamsScalarFieldEnum = {
+export const RoomsScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
   title: 'title',
   description: 'description',
   thumbnail_url: 'thumbnail_url',
   category: 'category',
-  status: 'status',
-  viewer_count: 'viewer_count',
   started_at: 'started_at',
   ended_at: 'ended_at',
   created_at: 'created_at'
 } as const
 
-export type StreamsScalarFieldEnum = (typeof StreamsScalarFieldEnum)[keyof typeof StreamsScalarFieldEnum]
+export type RoomsScalarFieldEnum = (typeof RoomsScalarFieldEnum)[keyof typeof RoomsScalarFieldEnum]
 
 
 export const SortOrder = {
