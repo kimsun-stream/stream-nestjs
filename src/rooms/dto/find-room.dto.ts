@@ -4,7 +4,10 @@ import z from 'zod';
 const FindAllSchema = z.object({
   limit: z.coerce.number().catch(30),
   page: z.coerce.number().catch(1),
-  isLive: z.coerce.boolean().catch(true),
+  isLive: z
+    .enum(['true', 'false'])
+    .transform((v) => v === 'true')
+    .catch(false),
   sort: z.enum(['view', 'recent']).catch('view'),
 });
 

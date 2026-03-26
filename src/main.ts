@@ -16,7 +16,7 @@ async function bootstrap() {
 
   app.enableCors({
     origin: `${process.env.FRONT_URL}`,
-    Credential: true,
+    credentials: true,
   });
 
   const swaggerConfig = new DocumentBuilder()
