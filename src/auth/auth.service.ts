@@ -55,8 +55,8 @@ export class AuthService {
 
     res.cookie('refreshToken', newUuid, {
       httpOnly: true,
-      sameSite: 'lax',
-      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'none',
+      secure: true,
       maxAge: THIRTY_DAYS_IN_S * 1000,
     });
 
@@ -92,8 +92,8 @@ export class AuthService {
 
     res.clearCookie('refreshToken', {
       httpOnly: true,
-      sameSite: 'lax',
-      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'none',
+      secure: true,
     });
 
     return;

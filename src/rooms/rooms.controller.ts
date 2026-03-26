@@ -42,11 +42,7 @@ export class RoomsController {
 
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
-  async update(
-    @Param('id') id: string,
-    @UserId() userId: number,
-    @Body() dto: UpdateRoomDto,
-  ) {
+  async update(@Param('id') id: string, @UserId() userId: number, @Body() dto: UpdateRoomDto) {
     const data = await this.roomsService.update(userId, +id, dto);
     return BaseResponse.success(data, '성공적으로 수정되었습니다.');
   }
