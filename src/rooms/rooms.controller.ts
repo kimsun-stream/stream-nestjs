@@ -16,10 +16,15 @@ import { UpdateRoomDto } from './dto/update-room.dto';
 import { UserId } from 'src/common/decorators/user-id.decorator';
 import { FindAllRoomDto } from './dto/find-room.dto';
 import { BaseResponse } from 'src/common/dto/base-response';
+import { RefreshToken } from 'src/common/decorators/refresh.decorator';
+import { AuthService } from 'src/auth/auth.service';
 
 @Controller('rooms')
 export class RoomsController {
-  constructor(private readonly roomsService: RoomsService) {}
+  constructor(
+    private readonly roomsService: RoomsService,
+    private readonly authService: AuthService,
+  ) {}
 
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -54,10 +59,10 @@ export class RoomsController {
     return BaseResponse.success(data, '성공적으로 시작되었습니다.');
   }
 
-  @UseGuards(JwtAuthGuard)
   @Post('end')
-  async endStream(@UserId() userId: number) {
-    const data = await this.roomsService.endStream(userId);
+  async endStream(@RefreshToken() refreshToken: string) {
+    console.log('들어옴');
+    const data = await this.roomsService.endStream(refreshToken);
     return BaseResponse.success(data, '성공적으로 삭제되었습니다.');
   }
 

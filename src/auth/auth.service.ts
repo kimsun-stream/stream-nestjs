@@ -109,6 +109,16 @@ export class AuthService {
     }
   }
 
+  async isValidRefreshToken(refreshToken: string) {
+    const userId = await this.redis.get(`refresh:${refreshToken}`);
+    console.log(userId);
+    if (!userId) throw new UnauthorizedException('Invalid token');
+
+    const parsedUserId = z.coerce.number().parse(userId);
+
+    return { userId: parsedUserId };
+  }
+
   async hashPassword(password: string): Promise<string> {
     const salt = await bcrypt.genSalt(12);
     return bcrypt.hash(password, salt);

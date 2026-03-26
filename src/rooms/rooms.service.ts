@@ -4,6 +4,7 @@ import {
   InternalServerErrorException,
   NotFoundException,
   RequestMethod,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { RedisService } from 'src/common/redis/redis.service';
@@ -11,6 +12,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { UpdateRoomDto } from './dto/update-room.dto';
 import { FindAllRoomDto } from './dto/find-room.dto';
 import { ConfigService } from '@nestjs/config';
+import { AuthService } from 'src/auth/auth.service';
 
 @Injectable()
 export class RoomsService {
@@ -20,6 +22,7 @@ export class RoomsService {
     private readonly redis: RedisService,
     private readonly prisma: PrismaService,
     private readonly configService: ConfigService,
+    private readonly authService: AuthService,
   ) {
     this.axumServerUrl = this.configService.getOrThrow('AXUM_SERVER_URL');
   }
@@ -135,7 +138,12 @@ export class RoomsService {
     return;
   }
 
-  async endStream(userId: number) {
+  async endStream(refreshToken: string) {
+    console.log(refreshToken);
+    const payload = await this.authService.isValidRefreshToken(refreshToken);
+
+    const { userId } = payload;
+
     const room = await this.prisma.rooms.findFirst({
       where: { user_id: userId, ended_at: null },
       select: { id: true },
