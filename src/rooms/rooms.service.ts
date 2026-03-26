@@ -123,6 +123,7 @@ export class RoomsService {
 
     const res = await fetch(`${this.axumServerUrl}/room/${roomId}`, {
       method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ state: 'live' }),
     });
     if (!res.ok) {
@@ -162,6 +163,8 @@ export class RoomsService {
     if (!roomExists) throw new NotFoundException('존재하지 않는 방송입니다.');
 
     await this.prisma.rooms.delete({ where: { id: roomId }, select: { id: true } });
+    await this.redis.srem('live_rooms', roomId);
+    await this.redis.del(`streamer:${userId}`);
 
     return;
   }
